@@ -1,0 +1,25 @@
+{
+  "name": "recipes",
+  "version": "1.0.0",
+  "description": "js project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s777610/Recipes-App.git"
+  },
+  "author": "wei cheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s777610/Recipes-App/issues"
+  },
+  "homepage": "https://github.com/s777610/Recipes-App#readme",
+  "devDependencies": {
+    "webpack": "^4.20.2"
+  },
+  "dependencies": {
+    "webpack-cli": "^3.1.2"
+  }
+}

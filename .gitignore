@@ -93,6 +93,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+node_modules/
 
 # IDE
 .idea
@@ -117,7 +118,7 @@ company_blog/data.sqlite
 dmypy.json
 
 
-node_modules
+
 
 .DS_Store
 __pycache__/

@@ -1,27 +1,27 @@
 # Recipes-App
 
 
-#Create package.json
+Create package.json
 ```
 npm init
 ```
 
-#Install webpack
+Install webpack
 ```
 npm install webpack --save-dev
 ```
 
-#Install webpack command-line interface
+Install webpack command-line interface
 ```
 npm install webpack-cli --save-dev
 ```
 
-#For development mode
+For development mode
 ```
 npm run dev
 ```
 
-#For production mode
+For production mode
 ```
 npm run build
 ```

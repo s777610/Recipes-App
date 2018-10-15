@@ -33,9 +33,20 @@ const controlSearch = async() => {
     }
 }
 
+// submit
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault(); // prevent reload the page
     controlSearch();
 });
 
+
+// click pagination button
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline'); // element where click happen
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10); // 10 is Decimal
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, goToPage);// goToPage is a number you wanna go to 
+    }
+});
 

@@ -8,6 +8,7 @@ export const clearInput = () => {
 
 export const clearResults = () => {
     elements.searchResList.innerHTML = "";
+    elements.searchResPages.innerHTML = "";
 };
 
 const limitRecipeTitle = (title, limit = 17) => {
@@ -42,6 +43,45 @@ const renderRecipe = receipe => {  // private funcation
     elements.searchResList.insertAdjacentHTML('beforeend', markup) // insert 30 recipes
 };
 
-export const renderResults = recipes => { // recipes is array 
-    recipes.forEach(renderRecipe); // loop through each recipe and call renderRecipe on each of them
+// data attribute data-goto
+const createButton = (page, type) => `
+    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
+        <span>Page ${type === 'prev' ? page - 1 : page + 1}</span> 
+        <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+    </button>            
+                
+`;
+
+const renderButtons = (page, numResults, resPerPage) => {// 1, 30, 10
+    const pages = Math.ceil(numResults / resPerPage); // 3
+
+    let button;
+    if (page === 1 && pages >1) {
+        //only button to go to next page
+        button = createButton(page, 'next');
+    } else if (page < pages) {
+        // Both buttons
+        button = `
+            ${createButton(page, 'prev')}
+            ${createButton(page, 'next')}
+        `;
+    } else if (page === pages && pages > 1) {
+        // only button to go to prew page
+        button = createButton(page, 'prev');
+    }
+
+    elements.searchResPages.insertAdjacentHTML('afterbegin', button);
+};
+
+export const renderResults = (recipes, page = 1, resPerPage = 10) => { // recipes is array, page is a page you wanna go to 
+    // render results of current page
+    const start = (page - 1) * resPerPage;
+    const end = page * resPerPage;
+
+    recipes.slice(start, end).forEach(renderRecipe); // loop through each recipe and call renderRecipe on each of them
+
+    // render pagination buttons
+    renderButtons(page, recipes.length, resPerPage);
 };

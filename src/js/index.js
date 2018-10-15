@@ -1,10 +1,10 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
-import { elements } from './views/base';
+import { elements, renderLoader, clearLoader } from './views/base';
 
 /* 
 Global state of the app 
-Search object
+Search object, including 30 result
 Current recipe object
 Shopping list object
 Liked recipts
@@ -13,7 +13,7 @@ const state = {};
 
 const controlSearch = async() => {
     //1 get the query from view
-    const query = searchView.getInput();
+    const query = searchView.getInput(); //pizza
 
     if (query) {
         //2 new search object and add to state
@@ -22,11 +22,13 @@ const controlSearch = async() => {
         //3 prepare UI for results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes);
 
         //4 Search for recipes
         await state.search.getResults(); // return promise
 
         //5 render results on UI
+        clearLoader();
         searchView.renderResults(state.search.result);
     }
 }

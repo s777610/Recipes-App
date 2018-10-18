@@ -14,7 +14,7 @@ export default class Recipe {
             this.author = res.data.recipe.publisher;
             this.img = res.data.recipe.image_url;
             this.url = res.data.recipe.source_url;
-            this.ingredients = res.data.recipe.ingredients;
+            this.ingredients = res.data.recipe.ingredients; // array
         } catch (error) {
             console.log(error);
             alert('Something went wrong');
@@ -33,6 +33,7 @@ export default class Recipe {
         this.servings = 4;
     }
 
+    // return new ingredients array with objIng object
     parseIngredients() {
         const unitsLong = ['tablespoons', 'tablespoon', 'ounces', 'ounce', 'teaspoons', 'teaspoon', 'cups', 'pounds'];
         const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound'];
@@ -91,5 +92,17 @@ export default class Recipe {
             return objIng;
         });
         this.ingredients = newIngredients;
+    }
+
+    updateServings (type) {  // the method of recipe
+        // Servings
+        const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+        // Ingredients
+        this.ingredients.forEach(ing => {
+            ing.count *= (newServings / this.servings);
+        });
+
+        this.servings = newServings;
     }
 }

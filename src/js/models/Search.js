@@ -4,7 +4,6 @@ import {key, proxy} from '../config';
 export default class Search {
     constructor(query) {
         this.query = query;
-
     }
     async getResults() {
         try {
@@ -15,7 +14,6 @@ export default class Search {
         } catch (error) {
             alert(error);
         }
-        
     }
 }
 

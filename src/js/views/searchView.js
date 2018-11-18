@@ -88,6 +88,7 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => { // recipe
     const start = (page - 1) * resPerPage;
     const end = page * resPerPage;
 
+                   // or .forEach(el => renderRecipe(el))
     recipes.slice(start, end).forEach(renderRecipe); // loop through each recipe and call renderRecipe on each of them
 
     // render pagination buttons

@@ -8,7 +8,7 @@
 6. The models and views cannot interact directly, that is why we need the controller to be a middleman. Therefore, the App would be more maintainable and clean.<br>
 7. Finally, I used webpack to bundle all files.<br>
 8. I took an online tutorial on Udemy and came out with this project.<br>
-
+ 
 
 ## Installation
 Create package.json
